@@ -1,22 +1,21 @@
 package service
 
 import (
-    "context"
-    "github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/provider/cognito"
+	"context"
 )
 
 type AuthService struct {
-    userPool cognito.UserPool
+	userPool UserPool
 }
 
-func NewAuthService(userPool cognito.UserPool) *AuthService {
-    return &AuthService{userPool: userPool}
+func NewAuthService(userPool UserPool) *AuthService {
+	return &AuthService{userPool: userPool}
 }
 
 func (s *AuthService) Register(ctx context.Context, username, password string) error {
-    return s.userPool.Register(ctx, username, password)
+	return s.userPool.Register(ctx, username, password)
 }
 
 func (s *AuthService) Login(ctx context.Context, username, password string) (string, error) {
-    return s.userPool.Login(ctx, username, password)
+	return s.userPool.Login(ctx, username, password)
 }

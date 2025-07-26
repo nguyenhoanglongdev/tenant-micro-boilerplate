@@ -1,6 +1,6 @@
 package provider
 
-import "github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/models"
+import "github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/model"
 
 // UserPool defines the interface for user authentication operations.
 //
@@ -10,7 +10,6 @@ import "github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-ser
 // Implementations of this interface are responsible for user registration and login flows,
 // and can be injected at runtime to swap authentication backends without changing business logic.
 type UserPool interface {
-    Register(user *domain.User) error
-    Login(email, password string) (*domain.User, error)
+	Register(user *model.User) error
+	Login(email, password string) (*model.User, error)
 }
-

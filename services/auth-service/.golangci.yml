@@ -1,0 +1,25 @@
+run:
+  timeout: 5m
+  tests: true
+
+linters:
+  enable:
+    - govet
+    - errcheck
+    - staticcheck
+    - gosimple
+    - unused
+    - structcheck
+    - deadcode
+    - gofmt
+    - goimports
+    - revive
+
+linters-settings:
+  gofmt:
+    simplify: true
+  revive:
+    severity: warning
+    rules:
+      - name: indent-error-flow
+      - name: unused-parameter
