@@ -1,4 +1,4 @@
-package aws
+package cloud
 
 import (
 	"context"
@@ -9,7 +9,13 @@ import (
 
 // LoadAWSConfig loads the default AWS configuration with optional customizations.
 func LoadAWSConfig(ctx context.Context, region string) (aws.Config, error) {
-	cfg, err := config.LoadDefaultConfig(ctx, config.WithRegion(region))
+	opts := []func(*config.LoadOptions) error{}
+
+	if region != "" {
+		opts = append(opts, config.WithRegion(region))
+	}
+
+	cfg, err := config.LoadDefaultConfig(ctx, opts...)
 	if err != nil {
 		return aws.Config{}, err
 	}
