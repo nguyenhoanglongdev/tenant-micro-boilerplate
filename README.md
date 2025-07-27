@@ -1,3 +1,4 @@
+```
 tenant-micro-builerplate/
 ├── README.md                    # Project overview, architecture diagram
 ├── infra/                       # CDK or Terraform files to create AWS infra
@@ -16,3 +17,4 @@ tenant-micro-builerplate/
 └── .github/
     └── workflows/               # GitHub Actions CI/CD for lint, test, deploy
         └── deploy.yml
+```

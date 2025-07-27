@@ -18,7 +18,7 @@ The **Auth Service** acts as a middleware layer between client applications and 
   - Supports deployment as AWS Lambda for cost-efficiency and scalability
   - Can switch to a dedicated HTTP server without changing core logic
 
----
+```
 auth-service/
 ├── cmd/ # Entry points
 │ ├── lambda/ # AWS Lambda handler (e.g., API Gateway proxy)
@@ -37,3 +37,4 @@ auth-service/
 │ ├── router/ # Gin router and middleware setup
 │ └── service/ # Business logic layer
 └── go.mod
+```
