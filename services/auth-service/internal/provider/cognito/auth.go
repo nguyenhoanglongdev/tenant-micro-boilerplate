@@ -1,21 +1,16 @@
 package cognito
 
 import (
-	"context"
-	"errors"
+	"github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/model"
 )
 
-func (u *CognitoUserPool) ConfirmSignUp(ctx context.Context, username, confirmationCode string) error {
-	// Call ConfirmSignUp API of Cognito
-	return errors.New("not implemented")
+// Implement RegisterUser and Authenticate for CognitoAuthProvider
+func (service *CognitoService) RegisterUser(user *model.User) error {
+	// Use c.client to call AWS Cognito Signup
+	return nil
 }
 
-func (u *CognitoUserPool) RefreshToken(ctx context.Context, refreshToken string) (string, error) {
-	// Call Cognito refresh token API
-	return "", errors.New("not implemented")
-}
-
-func (u *CognitoUserPool) ValidateToken(ctx context.Context, token string) (bool, error) {
-	// Validate JWT token (optionally using Cognito JWKS)
-	return false, errors.New("not implemented")
+func (service *CognitoService) Authenticate(email, password string) (*model.User, error) {
+	// Use c.client to call AWS Cognito Authenticate
+	return nil, nil
 }

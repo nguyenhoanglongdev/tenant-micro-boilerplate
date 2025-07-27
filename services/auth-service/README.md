@@ -29,6 +29,10 @@ auth-service/
 │ ├── handler/ # HTTP handlers for auth endpoints
 │ ├── provider/
 │ │ └── cognito/ # AWS Cognito integration
+│ ├── └── client.go init cognitor client
+│ ├── └── error.go cognitor error handler
+│ ├── └── auth.go auth logic handler
+
 │ │ └── userpool.go # Pluggable user pool abstraction
 │ ├── router/ # Gin router and middleware setup
 │ └── service/ # Business logic layer

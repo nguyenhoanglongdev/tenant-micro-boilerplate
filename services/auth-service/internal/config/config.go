@@ -12,10 +12,6 @@ type Config struct {
 
 	// Service
 	Port string
-
-	// Logger
-	LogToFile   bool
-	LogFilePath string
 }
 
 func LoadConfig() *Config {

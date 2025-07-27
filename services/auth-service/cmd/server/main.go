@@ -3,14 +3,15 @@ package main
 import (
 	"fmt"
 	"log"
+	"context"
 
 	"github.com/joho/godotenv"
+	"github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/config"
 	"github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/logger"
 	"github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/util"
-	// "github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/config"
-	// "github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/provider/cognito"
+	"github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/provider/cognito"
 	// "github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/router"
-	// "github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/service"
+	"github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/service"
 	// "github.com/nguyenhoanglongdev/tenant-micro-boilerplate/services/auth-service/internal/handler"
 )
 
@@ -37,27 +38,26 @@ func main() {
 
 	fmt.Println("Init logger has been done!")
 
-	logger.Info("Init logger has been done")
+	cfg := config.LoadConfig()
 
-	// cfg := config.LoadConfig()
-	// ctx := context.Background()
+	util.PrettyPrint(cfg)
 
-	// client, err := cognito.NewClient(ctx, cfg.AwsRegion)
-	// if err != nil {
-	//     log.Fatalf("failed to create Cognito client: %v", err)
-	// }
+	// Init context
+	ctx := context.Background()
 
-	// userPool := cognito.NewUserPool(client, cfg.UserPoolId, cfg.ClientId)
-	// authService := service.NewAuthService(userPool)
-	// authHandler := handler.NewAuthHandler(authService)
+	authProvider, err := cognito.NewAuthProvider(ctx, cfg.AwsRegion, cfg.UserPoolId, cfg.ClientId)
+	if err != nil {
+		log.Fatalf("failed to create Cognito auth provider: %v", err)
+	}
 
-	// r := router.SetupRouter(authHandler)
+	authService := service.NewAuthService(authProvider)
 
-	// if cfg.Port == "" {
-	//     cfg.Port = "8080"
-	// }
-	// log.Printf("starting server on :%s", cfg.Port)
-	// if err := r.Run(":" + cfg.Port); err != nil {
-	//     log.Fatalf("server exited with error: %v", err)
-	// }
+
+    // authHandler := handler.NewAuthHandler(authService)
+    // router := router.SetupRouter(authHandler)
+
+    // fmt.Println("Starting server at :8080")
+    // if err := router.Run(":8080"); err != nil {
+    //     log.Fatalf("failed to run server: %v", err)
+    // }
 }
